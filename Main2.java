@@ -174,7 +174,7 @@ public class Main2 {
         }
         System.out.println("Suma odwrotnosci liczb naturalnych: "+wynikOdwrotnisci);
     }
-    static boolean czyPalindrom(String n){
+    static boolean czyPalindromInt(String n){
         for(int i=0;i<n.length()/2;i++){
             if(n.charAt(i)!=n.charAt(n.length()-i-1)){
                 return false;
@@ -182,4 +182,21 @@ public class Main2 {
         }
         return true;
     }
-}
+
+
+    public static boolean isPalindrome(int number) {
+        if (number < 0) {
+            return false;
+        }
+
+        int originalNumber = number;
+        int reversedNumber = 0;
+
+        while (number != 0) {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+
+        return originalNumber == reversedNumber;
+    }
