@@ -200,3 +200,50 @@ public class Main2 {
 
         return originalNumber == reversedNumber;
     }
+static void trojkatPascala(int n)
+    {
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n-i-1; j++)
+            {
+                System.out.print(" ");
+            }
+            int temp = 1;
+            for(int j=0; j<=i; j++)
+            {
+                System.out.print(temp + " ");
+                temp = temp * (i-j)/(j+1);
+            }
+            System.out.println();
+        }
+    }
+    static boolean czyDoskonala(int n)
+    {
+        int temp=0;
+        for(int i=1; i<n; i++)
+        {
+            if(n%i==0)
+            {
+                temp += i;
+            }
+        }
+        return temp == n;
+    }
+    static boolean czyPierwsza(int n) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static int NWD(int n, int m)
+    {
+        while (m != 0) {
+            int temp = m;
+            m = n % m;
+            n = temp;
+        }
+        return n;
+    }
+}
