@@ -1,33 +1,33 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Sklep {
-    HashMap<Produkt, Integer> produkty;
+    ArrayList<Produkt> produkty;
 
-    public Sklep(HashMap<Produkt, Integer> produkty)
+    public Sklep()
     {
-        this.produkty = produkty;
+        this.produkty = new ArrayList<>();
     }
 
     public void dodajProdukt(Produkt p)
     {
-            produkty.put(p, p.iloscNaMagazynie);
+        if(!produkty.contains(p))
+            produkty.add(p);
     }
 
     public void wyswietlOferty()
     {
         System.out.println("Wyposażenie sklepu:");
-        produkty.forEach((produkt, ilosc) -> System.out.print(produkt.nazwa+ ", "));
+        produkty.forEach((produkt) -> System.out.print(produkt.nazwa+ ", "));
         System.out.println();
     }
 
     public void wyszukajProduktu(String nazwa)
     {
-        for(Map.Entry<Produkt, Integer> entry : produkty.entrySet())
-        {
-            if(entry.getKey().nazwa.equalsIgnoreCase(nazwa))
-            {
-                entry.getKey().wyswietlInformacje();
+        for(Produkt p : produkty){
+            if (nazwa.equalsIgnoreCase(p.nazwa)) {
+                p.wyswietlInformacje();
                 return;
             }
         }

@@ -2,10 +2,10 @@ public class Platnosc {
     double kwota;
     String statusPlatnosci;
 
-    Platnosc(double kwota, String statusPlatnosci)
+    Platnosc(double kwota)
     {
         this.kwota = kwota;
-        this.statusPlatnosci = statusPlatnosci;
+        this.statusPlatnosci = "Nieopłacone";
     }
 
     public void zaplac()

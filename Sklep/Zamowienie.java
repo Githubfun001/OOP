@@ -9,7 +9,7 @@ public class Zamowienie {
     {
         this.koszykZakupowy = koszykZakupowy;
         this.statusZamowienia = "Zamówione";
-        this.platnosc = new Platnosc(koszykZakupowy.obliczCalkowitaWartosc(), "Nieopłacone");
+        this.platnosc = new Platnosc(koszykZakupowy.obliczCalkowitaWartosc());
     }
 
     public void ustawStatusZamowienia(String status)
@@ -32,18 +32,13 @@ public class Zamowienie {
 
     public void zwrocProdukt(Produkt p, int ilosc)
     {
-        p.dodajDoMagazynu(ilosc);
-        for(Map.Entry<Produkt, Integer> entry : koszykZakupowy.listaProduktow.entrySet())
-        {
-            if(p == entry.getKey())
-            {
-                if(ilosc<entry.getValue())
-                {
-                    koszykZakupowy.listaProduktow.put(entry.getKey(), entry.getValue()-ilosc);
-                }
-                else
-                    koszykZakupowy.listaProduktow.remove(entry.getKey());
-            }
+        Integer iloscProduktu = koszykZakupowy.listaProduktow.get(p);
+        if(iloscProduktu != null && ilosc > 0) {
+            if (iloscProduktu > ilosc)
+                koszykZakupowy.listaProduktow.put(p, iloscProduktu - ilosc);
+            else
+                koszykZakupowy.listaProduktow.remove(p);
+            p.dodajDoMagazynu(ilosc);
         }
     }
 }

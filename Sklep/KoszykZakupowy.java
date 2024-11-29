@@ -6,15 +6,15 @@ public class KoszykZakupowy {
 
     public KoszykZakupowy()
     {
-        listaProduktow = new HashMap<>();
+        this.listaProduktow = new HashMap<>();
     }
 
     public void dodajProdukt(Produkt p, int ilosc)
     {
         if (p.iloscNaMagazynie >= ilosc)
         {
+            listaProduktow.put(p, listaProduktow.getOrDefault(p, 0) + ilosc);
             p.usunZMagazynu(ilosc);
-            listaProduktow.put(p, ilosc);
         }
     }
 

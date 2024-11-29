@@ -8,10 +8,8 @@ public class Main {
         Produkt stol = new Produkt("stol", 25.89, 10);
         Produkt blat = new Produkt("blat", 27.49, 10);
 
-        HashMap<Produkt, Integer> asortyment = new HashMap<>();
-        asortyment.put(krzeslo, 7); asortyment.put(stol, 10);
-
-        Sklep sklep = new Sklep(asortyment); sklep.dodajProdukt(blat);
+        Sklep sklep = new Sklep();
+        sklep.dodajProdukt(krzeslo); sklep.dodajProdukt(stol); sklep.dodajProdukt(blat);
         Klient klient = new Klient("Jan", "Kowalski");
         KoszykZakupowy koszyk = new KoszykZakupowy();
 
