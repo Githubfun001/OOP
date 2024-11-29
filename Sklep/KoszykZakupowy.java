@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class KoszykZakupowy {
     Map<Produkt, Integer> listaProduktow;
@@ -18,16 +19,11 @@ public class KoszykZakupowy {
         }
     }
 
-    public void wyswietlZawartoscKoszyka()
-    {
-        System.out.println("Zwartosc koszyka:");
-        if (listaProduktow.isEmpty())
-            System.out.println("pusty");
-
-        else
-            listaProduktow.forEach((produkt, iloscWKoszyku) ->
-                System.out.println("nazwa: " + produkt.nazwa+" | ilosc w koszyku: " + iloscWKoszyku)
-            );
+    @Override
+    public String toString() {
+        return listaProduktow.entrySet().stream()
+                .map(entry -> entry.getKey().nazwa + " : " + entry.getValue())
+                .collect(Collectors.joining("\n"));
     }
 
     public double obliczCalkowitaWartosc()

@@ -17,11 +17,9 @@ public class Zamowienie {
         statusZamowienia = status;
     }
 
-    public void wyswietlZamowienie()
-    {
-        koszykZakupowy.wyswietlZawartoscKoszyka();
-        System.out.print("Status: ");
-        System.out.println(statusZamowienia);
+    @Override
+    public String toString() {
+        return koszykZakupowy.toString()+ "\n" + "Status: " + statusZamowienia;
     }
 
     public void finalizujZamowienie()

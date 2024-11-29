@@ -1,39 +1,25 @@
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
 
+
+
+        Sklep sklep = new Sklep("Jas", new Date(2001, Calendar.FEBRUARY,1), new Magazyn());
         Produkt krzeslo = new Produkt("krzeslo", 19.99, 7);
         Produkt stol = new Produkt("stol", 25.89, 10);
         Produkt blat = new Produkt("blat", 27.49, 10);
-
-        Sklep sklep = new Sklep();
         sklep.dodajProdukt(krzeslo); sklep.dodajProdukt(stol); sklep.dodajProdukt(blat);
-        Klient klient = new Klient("Jan", "Kowalski");
+        Klient klient = new Klient("Jan", "Kowalski", new Adres("Prosta", 5, "Olsztyn", "10-810"));
         KoszykZakupowy koszyk = new KoszykZakupowy();
-
-        sklep.zakupy(koszyk, krzeslo, 2);
+        koszyk.dodajProdukt(stol, 5);
 
         Zamowienie zamowienie = new Zamowienie(koszyk);
-        zamowienie.wyswietlZamowienie();
-        System.out.println();
-        System.out.println(zamowienie.platnosc.statusPlatnosci);
-        System.out.println();
-        zamowienie.platnosc.zaplac();
-        System.out.println();
-        System.out.println("=== Płacenie ===");
-        System.out.println();
-        System.out.println(zamowienie.platnosc.statusPlatnosci);
-        System.out.println();
-        System.out.println("=== Zwracanie Produktu ===");
-        zamowienie.zwrocProdukt(krzeslo, 1);
-        System.out.println();
-        zamowienie.wyswietlZamowienie();
-        System.out.println();
-        System.out.println("=== Finalizowanie ===");
-        System.out.println();
-        zamowienie.finalizujZamowienie();
-        zamowienie.wyswietlZamowienie();
+        klient.dodajZamowiene(zamowienie);
+
+        System.out.println(sklep);
     }
 }

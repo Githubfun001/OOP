@@ -1,13 +1,23 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
+import java.util.stream.Collectors;
 
 public class Sklep {
     ArrayList<Produkt> produkty;
+    String nazwaSklepu;
+    Date dataPowstania;
+    Magazyn magazynSklepu;
 
-    public Sklep()
+    public Sklep(String nazwaSklepu, Date dataPowstania, Magazyn magazynSklepu)
     {
+        Date currentDate = new Date();
+        if(!dataPowstania.after(currentDate))
+            throw new IllegalArgumentException();
         this.produkty = new ArrayList<>();
+        this.nazwaSklepu = nazwaSklepu;
+        this.dataPowstania = dataPowstania;
+        this.magazynSklepu = magazynSklepu;
     }
 
     public void dodajProdukt(Produkt p)
@@ -16,18 +26,17 @@ public class Sklep {
             produkty.add(p);
     }
 
-    public void wyswietlOferty()
+    @Override
+    public String toString()
     {
-        System.out.println("Wyposażenie sklepu:");
-        produkty.forEach((produkt) -> System.out.print(produkt.nazwa+ ", "));
-        System.out.println();
+        return produkty.stream().map(Produkt -> Produkt.nazwa).collect(Collectors.joining("\n"));
     }
 
     public void wyszukajProduktu(String nazwa)
     {
         for(Produkt p : produkty){
             if (nazwa.equalsIgnoreCase(p.nazwa)) {
-                p.wyswietlInformacje();
+                System.out.println(p);;
                 return;
             }
         }
