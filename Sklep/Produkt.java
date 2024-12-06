@@ -1,16 +1,15 @@
 import java.util.Objects;
 
 public class Produkt {
-    String nazwa;
-    double cena;
-    int iloscNaMagazynie;
+    private String nazwa;
+    private double cena;
+    private int iloscNaMagazynie;
 
     Produkt(String nazwa, double cena, int iloscNaMagazynie)
     {
         this.nazwa = nazwa;
         this.cena = cena;
         this.iloscNaMagazynie = iloscNaMagazynie;
-        dodajDoMagazynu(iloscNaMagazynie);
     }
 
     /*
@@ -22,7 +21,8 @@ public class Produkt {
     */
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Produkt produkt = (Produkt) o;
@@ -42,21 +42,44 @@ public class Produkt {
 
     public void dodajDoMagazynu(int ilosc)
     {
-        Magazyn.produkty.put(this, Magazyn.produkty.getOrDefault(this, 0) + ilosc);
         iloscNaMagazynie += ilosc;
     }
 
     public void usunZMagazynu(int ilosc)
     {
-        if(iloscNaMagazynie > ilosc)
+        if(iloscNaMagazynie >= ilosc)
         {
-            Magazyn.produkty.put(this, iloscNaMagazynie - ilosc);
             iloscNaMagazynie -= ilosc;
         }
-        else if(iloscNaMagazynie == ilosc)
-        {
-            Magazyn.produkty.remove(this);
-            iloscNaMagazynie = 0;
-        }
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public void setNazwa(String nazwa) {
+        if(nazwa == null || nazwa.trim().isEmpty())
+            throw new IllegalArgumentException();
+        this.nazwa = nazwa;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(double cena) {
+        if(cena < 0.0)
+            throw new IllegalArgumentException();
+        this.cena = cena;
+    }
+
+    public int getIloscNaMagazynie() {
+        return iloscNaMagazynie;
+    }
+
+    public void setIloscNaMagazynie(int iloscNaMagazynie) {
+        if(iloscNaMagazynie < 0)
+            throw new IllegalArgumentException();
+        this.iloscNaMagazynie = iloscNaMagazynie;
     }
 }

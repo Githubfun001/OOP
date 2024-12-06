@@ -1,9 +1,9 @@
 import java.util.Map;
 
 public class Zamowienie {
-    KoszykZakupowy koszykZakupowy;
-    String statusZamowienia;
-    Platnosc platnosc;
+    private KoszykZakupowy koszykZakupowy;
+    private String statusZamowienia;
+    private Platnosc platnosc;
 
     public Zamowienie(KoszykZakupowy koszykZakupowy)
     {
@@ -24,19 +24,49 @@ public class Zamowienie {
 
     public void finalizujZamowienie()
     {
-        if(platnosc.statusPlatnosci.equalsIgnoreCase("Opłacone"))
+        if(platnosc.getStatusPlatnosci().equalsIgnoreCase("Opłacone"))
             this.ustawStatusZamowienia("Gotowe do wysyłki");
     }
 
     public void zwrocProdukt(Produkt p, int ilosc)
     {
-        Integer iloscProduktu = koszykZakupowy.listaProduktow.get(p);
+        Integer iloscProduktu = koszykZakupowy.getListaProduktow().get(p);
         if(iloscProduktu != null && ilosc > 0) {
             if (iloscProduktu > ilosc)
-                koszykZakupowy.listaProduktow.put(p, iloscProduktu - ilosc);
+                koszykZakupowy.getListaProduktow().put(p, iloscProduktu - ilosc);
             else
-                koszykZakupowy.listaProduktow.remove(p);
+                koszykZakupowy.getListaProduktow().remove(p);
             p.dodajDoMagazynu(ilosc);
         }
+    }
+
+    public KoszykZakupowy getKoszykZakupowy() {
+        return koszykZakupowy;
+    }
+
+    public void setKoszykZakupowy(KoszykZakupowy koszykZakupowy) {
+        if(koszykZakupowy == null || koszykZakupowy.getListaProduktow().isEmpty())
+            throw new IllegalArgumentException();
+        this.koszykZakupowy = koszykZakupowy;
+    }
+
+    public String getStatusZamowienia() {
+        return statusZamowienia;
+    }
+
+    public void setStatusZamowienia(String statusZamowienia) {
+        if(statusZamowienia == null || statusZamowienia.trim().isEmpty())
+            throw new IllegalArgumentException();
+        this.statusZamowienia = statusZamowienia;
+    }
+
+    public Platnosc getPlatnosc() {
+        return platnosc;
+    }
+
+    public void setPlatnosc(Platnosc platnosc) {
+        if(platnosc == null)
+            throw new IllegalArgumentException();
+        this.platnosc = platnosc;
     }
 }

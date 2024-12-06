@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class Magazyn {
-    static HashMap<Produkt, Integer> produkty;
+    private HashMap<Produkt, Integer> produkty;
 
     public Magazyn()
     {
@@ -11,8 +11,18 @@ public class Magazyn {
 
     @Override
     public String toString() {
-        return produkty.entrySet().stream()
-                .map(entry -> entry.getKey().nazwa + " : " + entry.getValue())
+        return produkty.keySet().stream()
+                .map(integer -> integer.getNazwa() + " : " + integer.getIloscNaMagazynie())
                 .collect(Collectors.joining("\n"));
+    }
+
+    public HashMap<Produkt, Integer> getProdukty() {
+        return produkty;
+    }
+
+    public void setProdukty(HashMap<Produkt, Integer> produkty) {
+        if(produkty == null)
+            throw new IllegalArgumentException();
+        this.produkty = produkty;
     }
 }

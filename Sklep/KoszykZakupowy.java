@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class KoszykZakupowy {
-    Map<Produkt, Integer> listaProduktow;
+    private Map<Produkt, Integer> listaProduktow;
 
     public KoszykZakupowy()
     {
@@ -12,7 +12,7 @@ public class KoszykZakupowy {
 
     public void dodajProdukt(Produkt p, int ilosc)
     {
-        if (p.iloscNaMagazynie >= ilosc)
+        if (p.getIloscNaMagazynie() >= ilosc)
         {
             listaProduktow.put(p, listaProduktow.getOrDefault(p, 0) + ilosc);
             p.usunZMagazynu(ilosc);
@@ -22,7 +22,7 @@ public class KoszykZakupowy {
     @Override
     public String toString() {
         return listaProduktow.entrySet().stream()
-                .map(entry -> entry.getKey().nazwa + " : " + entry.getValue())
+                .map(entry -> entry.getKey().getNazwa() + " : " + entry.getValue())
                 .collect(Collectors.joining("\n"));
     }
 
@@ -31,8 +31,18 @@ public class KoszykZakupowy {
         double wartosc = 0;
         for(Map.Entry<Produkt, Integer> entry : listaProduktow.entrySet())
         {
-            wartosc += entry.getKey().cena * entry.getValue();
+            wartosc += entry.getKey().getCena() * entry.getValue();
         }
         return wartosc;
+    }
+
+    public Map<Produkt, Integer> getListaProduktow() {
+        return listaProduktow;
+    }
+
+    public void setListaProduktow(Map<Produkt, Integer> listaProduktow) {
+        if(listaProduktow == null)
+            throw new IllegalArgumentException();
+        this.listaProduktow = listaProduktow;
     }
 }

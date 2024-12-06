@@ -3,10 +3,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Klient {
-    String imie;
-    String nazwisko;
-    ArrayList<Zamowienie> listaZamowien;
-    Adres adres;
+    private String imie;
+    private String nazwisko;
+    private ArrayList<Zamowienie> listaZamowien;
+    private Adres adres;
 
     public Klient(String imie, String nazwisko, Adres adres)
     {
@@ -43,8 +43,48 @@ public class Klient {
     {
         double wartosc = 0;
         for(Zamowienie z : listaZamowien){
-            wartosc += z.koszykZakupowy.obliczCalkowitaWartosc();
+            wartosc += z.getKoszykZakupowy().obliczCalkowitaWartosc();
         }
         return wartosc;
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        if(imie == null || imie.trim().isEmpty())
+            throw new IllegalArgumentException();
+        this.imie = imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        if(nazwisko == null || nazwisko.trim().isEmpty())
+            throw new IllegalArgumentException();
+        this.nazwisko = nazwisko;
+    }
+
+    public ArrayList<Zamowienie> getListaZamowien() {
+        return listaZamowien;
+    }
+
+    public void setListaZamowien(ArrayList<Zamowienie> listaZamowien) {
+        if(listaZamowien == null)
+            throw new IllegalArgumentException();
+        this.listaZamowien = listaZamowien;
+    }
+
+    public Adres getAdres() {
+        return adres;
+    }
+
+    public void setAdres(Adres adres) {
+        if(adres == null)
+            throw new IllegalArgumentException();
+        this.adres = adres;
     }
 }

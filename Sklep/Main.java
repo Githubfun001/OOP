@@ -8,7 +8,7 @@ public class Main {
 
 
 
-        Sklep sklep = new Sklep("Jas", new Date(2001, Calendar.FEBRUARY,1), new Magazyn());
+        Sklep sklep = new Sklep("Jas", new Date(101, Calendar.FEBRUARY,1), new Magazyn());
         Produkt krzeslo = new Produkt("krzeslo", 19.99, 7);
         Produkt stol = new Produkt("stol", 25.89, 10);
         Produkt blat = new Produkt("blat", 27.49, 10);
@@ -21,5 +21,6 @@ public class Main {
         klient.dodajZamowiene(zamowienie);
 
         System.out.println(sklep);
+        System.out.println(sklep.getDataPowstania());
     }
 }

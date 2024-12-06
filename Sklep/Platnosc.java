@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class Platnosc {
-    double kwota;
-    String statusPlatnosci;
+    private double kwota;
+    private String statusPlatnosci;
 
     Platnosc(double kwota)
     {
@@ -27,5 +27,25 @@ public class Platnosc {
     @Override
     public int hashCode() {
         return Objects.hash(kwota, statusPlatnosci);
+    }
+
+    public double getKwota() {
+        return kwota;
+    }
+
+    public void setKwota(double kwota) {
+        if(kwota < 0.0)
+            throw new IllegalArgumentException();
+        this.kwota = kwota;
+    }
+
+    public String getStatusPlatnosci() {
+        return statusPlatnosci;
+    }
+
+    public void setStatusPlatnosci(String statusPlatnosci) {
+        if(statusPlatnosci == null || statusPlatnosci.trim().isEmpty())
+            throw new IllegalArgumentException();
+        this.statusPlatnosci = statusPlatnosci;
     }
 }
