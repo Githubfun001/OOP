@@ -1,4 +1,4 @@
-public class Adres {
+public class Adres implements IAdress {
     private String ulica;
     private int numerDomu;
     private Integer numerMieszkania;
@@ -31,6 +31,7 @@ public class Adres {
                 "Ulica: " + ulica +" numer domu: "+numerDomu;
     }
 
+    @Override
     public boolean przed(String kodPocztowy1, String kodPocztowy2)
     {
         String temp1 = kodPocztowy1.replace("-", "");

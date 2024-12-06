@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Klient {
+public class Klient extends Osoba implements IKlient{
     private String imie;
     private String nazwisko;
     private ArrayList<Zamowienie> listaZamowien;
@@ -10,13 +10,13 @@ public class Klient {
 
     public Klient(String imie, String nazwisko, Adres adres)
     {
-        this.imie = imie;
-        this.nazwisko = nazwisko;
+        super(imie, nazwisko);
         this.listaZamowien = new ArrayList<>();
         this.adres = adres;
     }
 
-    public void dodajZamowiene(Zamowienie z)
+    @Override
+    public void dodajZamowienie(Zamowienie z)
     {
         listaZamowien.add(z);
     }
@@ -39,6 +39,7 @@ public class Klient {
         return Objects.hash(imie, nazwisko, adres);
     }
 
+    @Override
     public double obliczLacznyKosztZamowien()
     {
         double wartosc = 0;
@@ -46,26 +47,6 @@ public class Klient {
             wartosc += z.getKoszykZakupowy().obliczCalkowitaWartosc();
         }
         return wartosc;
-    }
-
-    public String getImie() {
-        return imie;
-    }
-
-    public void setImie(String imie) {
-        if(imie == null || imie.trim().isEmpty())
-            throw new IllegalArgumentException();
-        this.imie = imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        if(nazwisko == null || nazwisko.trim().isEmpty())
-            throw new IllegalArgumentException();
-        this.nazwisko = nazwisko;
     }
 
     public ArrayList<Zamowienie> getListaZamowien() {

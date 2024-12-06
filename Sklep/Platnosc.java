@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Platnosc {
+public class Platnosc implements IPlatnosc{
     private double kwota;
     private String statusPlatnosci;
 
@@ -10,6 +10,7 @@ public class Platnosc {
         this.statusPlatnosci = "Nieopłacone";
     }
 
+    @Override
     public void zaplac()
     {
         statusPlatnosci = "Opłacone";

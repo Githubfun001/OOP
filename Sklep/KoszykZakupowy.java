@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class KoszykZakupowy {
+public class KoszykZakupowy implements IKoszykZakupowy {
     private Map<Produkt, Integer> listaProduktow;
 
     public KoszykZakupowy()
@@ -10,6 +10,7 @@ public class KoszykZakupowy {
         this.listaProduktow = new HashMap<>();
     }
 
+    @Override
     public void dodajProdukt(Produkt p, int ilosc)
     {
         if (p.getIloscNaMagazynie() >= ilosc)
@@ -26,6 +27,7 @@ public class KoszykZakupowy {
                 .collect(Collectors.joining("\n"));
     }
 
+    @Override
     public double obliczCalkowitaWartosc()
     {
         double wartosc = 0;

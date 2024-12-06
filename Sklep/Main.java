@@ -18,9 +18,12 @@ public class Main {
         koszyk.dodajProdukt(stol, 5);
 
         Zamowienie zamowienie = new Zamowienie(koszyk);
-        klient.dodajZamowiene(zamowienie);
+        klient.dodajZamowienie(zamowienie);
 
-        System.out.println(sklep);
-        System.out.println(sklep.getDataPowstania());
+        //System.out.println(sklep);
+        //System.out.println(sklep.getDataPowstania());
+
+        Agrest agrest = new Agrest("czerwony agrest", 19.99, 25);
+        agrest.CzyjestesProduktem();
     }
 }

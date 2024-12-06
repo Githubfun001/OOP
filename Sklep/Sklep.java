@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-public class Sklep {
+public class Sklep implements ISklep {
     private ArrayList<Produkt> produkty;
     private String nazwaSklepu;
     private Date dataPowstania;
@@ -20,6 +20,7 @@ public class Sklep {
         this.magazynSklepu = magazynSklepu;
     }
 
+    @Override
     public void dodajProdukt(Produkt p)
     {
         if(!produkty.contains(p))
@@ -32,6 +33,7 @@ public class Sklep {
         return produkty.stream().map(Produkt -> Produkt.getNazwa()).collect(Collectors.joining("\n"));
     }
 
+    @Override
     public void wyszukajProduktu(String nazwa)
     {
         for(Produkt p : produkty){
@@ -42,6 +44,7 @@ public class Sklep {
         }
     }
 
+    @Override
     public void zakupy(KoszykZakupowy k, Produkt p, int ilosc)
     {
         if (p.getIloscNaMagazynie() >= ilosc)

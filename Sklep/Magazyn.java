@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-public class Magazyn {
+public class Magazyn implements IMagazyn {
     private HashMap<Produkt, Integer> produkty;
 
     public Magazyn()

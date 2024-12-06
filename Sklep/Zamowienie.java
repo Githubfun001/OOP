@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class Zamowienie {
+public class Zamowienie implements IZamowienie {
     private KoszykZakupowy koszykZakupowy;
     private String statusZamowienia;
     private Platnosc platnosc;
@@ -12,10 +12,10 @@ public class Zamowienie {
         this.platnosc = new Platnosc(koszykZakupowy.obliczCalkowitaWartosc());
     }
 
-    public void ustawStatusZamowienia(String status)
-    {
-        statusZamowienia = status;
-    }
+    // public void ustawStatusZamowienia(String status)
+    //{
+    //    statusZamowienia = status;
+    //}
 
     @Override
     public String toString() {
@@ -25,9 +25,10 @@ public class Zamowienie {
     public void finalizujZamowienie()
     {
         if(platnosc.getStatusPlatnosci().equalsIgnoreCase("Opłacone"))
-            this.ustawStatusZamowienia("Gotowe do wysyłki");
+            this.setStatusZamowienia("Gotowe do wysyłki");
     }
 
+    @Override
     public void zwrocProdukt(Produkt p, int ilosc)
     {
         Integer iloscProduktu = koszykZakupowy.getListaProduktow().get(p);

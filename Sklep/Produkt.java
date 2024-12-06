@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Produkt {
+public class Produkt implements IProdukt{
     private String nazwa;
     private double cena;
     private int iloscNaMagazynie;
@@ -40,6 +40,7 @@ public class Produkt {
         return "nazwa: "+ nazwa +"\n" + "cena: "+ cena+"\n" + "ilosc na magazynie: "+iloscNaMagazynie;
     }
 
+    @Override
     public void dodajDoMagazynu(int ilosc)
     {
         iloscNaMagazynie += ilosc;
